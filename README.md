@@ -12,3 +12,31 @@ PromptlyTech’s service automates the generation of diverse test cases, ensurin
 3. Prompt Testing and Ranking Service:
 PromptlyTech’s service evaluates and ranks different prompts based on effectiveness, helping Users to get the desired outcome from LLM. It ensures that chatbots and virtual assistants provide accurate, contextually relevant responses, thereby improving user engagement and satisfaction.
 
+
+## To run this project, you'll need the following dependencies:
+
+- Python 
+- Django 
+- openai (version x.x)
+
+
+**Installation:**
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/Diriba1/Precision-RAG-Prompt-Tuning
+   ```
+2. Install the dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the server
+    ```bash
+    cd prompt_testing
+    python manage.py runserver
+    ```
+
+**Then follow the link localhost:8000**
+
+
+
