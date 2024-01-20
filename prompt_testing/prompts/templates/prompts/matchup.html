@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Matchup Prompts</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Matchup Prompts</h1>
+    <form method="get">
+      {% csrf_token %}
+      <div class="row mb-3">
+        <div class="col">
+          <select class="form-select" id="prompt1" name="prompt1">
+            {% for prompt in prompts %}
+            <option value="{{ prompt.pk }}">{{ prompt.text }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-select" id="prompt2" name="prompt2">
+            {% for prompt in prompts %}
+            <option value="{{ prompt.pk }}">{{ prompt.text }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Run Matchup</button>
+    </form>
+    <div id="matchup-results"></div>
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+          Matchup: {{ prompt1.text }} vs. {{ prompt2.text }}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <b>Prompt 1:</b><br>
+              {{ prompt1_text }}<br>
+              <b>Generated Text:</b><br>
+              {{ prompt1_generated_text }}
+            </div>
+            <div class="col-6">
+              <b>Prompt 2:</b><br>
+              {{ prompt2.text }}<br>
+              <b>Generated Text:</b><br>
+              {{ prompt2_generated_text }}
+            </div>
+          </div>
+          <p class="text-right">Winner: {{ winner_prompt.text }}</p>
+        </div>
+      </div>
+      
+
+  </div>
+
+  <script>
+    // JavaScript code to handle form submission, trigger API call, and display results
+
+        const form = document.getElementById('matchup-form');
+        const resultsDiv = document.getElementById('matchup-results');
+
+        form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const response = await fetch('/prompts/matchup/', {
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            prompt1: document.getElementById('prompt1').value,
+            prompt2: document.getElementById('prompt2').value,
+            }),
+        });
+
+        const results = await response.json();
+        // Display results using DOM manipulation or libraries like Chart.js
+        });
+
+  </script>
+
+</body>
+</html>

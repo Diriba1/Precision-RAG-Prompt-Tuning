@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prompt Generation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    <h2>Prompts Generation</h2>
+    <ul>
+        {% for prompt in prompts %}
+            <li>{{ prompt.description }} - Result: {{ prompt.result }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'generate_prompt' %}">
+        {% csrf_token %}
+        <label for="description">Use-case Description:</label>
+        <textarea name="description" required></textarea><br>
+
+        <label for="test_cases">Test Cases:</label>
+        <textarea name="test_cases" required></textarea><br>
+
+        <label for="number_of_prompts">Number of Prompts:</label>
+        <input type="number" name="number_of_prompts" value="10" min="1"><br>
+
+        <label for="use_wandb">Use WandB:</label>
+        <input type="checkbox" name="use_wandb"><br>
+
+        <button type="submit">Generate Prompts</button>
+    </form>
+    </div>
+</body>
+</html>

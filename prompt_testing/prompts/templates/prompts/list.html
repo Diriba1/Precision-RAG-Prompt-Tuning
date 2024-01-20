@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prompt Testing</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Prompts</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Text</th>
+          <th>Rating</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prompt in prompts %}
+        <tr>
+          <td>{{ prompt.text }}</td>
+          <td>{{ prompt.rating }}</td>
+          <td>
+            <a href="{% url 'prompt_matchup' prompt.pk %}" class="btn btn-info">Matchup</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="{% url 'prompt_create' %}" class="btn btn-primary">Create New Prompt</a>
+  </div>
+
+  </body>
+</html>
